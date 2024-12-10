@@ -1,0 +1,23 @@
+Will Krzastek
+Fund Comp
+Lab 2
+Report
+
+For my third program, I created a plot of the graph: y = 8 * (2 + cos(x)) from x = 0.0 to x = 30.0
+
+User's perspective:
+    The purpose of graph.c is to generate a plot of y = 8(2 + cos(x)) from x = 0 to x = 30.
+    The user is not asked to input anything, they just have to run the program. They see a graph of the function appear, 
+    represented by '#' marks, incremented by 1 (rounded up). x is incremented by 0.20, so there are 151 data points that they see.
+    They also see the global maximum and minimum. 
+
+Programmer's perspective:
+    In lines 6-7 we initialize x and y, where y is just a double and x is set to the end of the range - 30.0
+    In lines 13-26 we run a for loop from 0-30, incremented by 0.2
+        In this for loop, we calculate the value of y--dependent on x--and display the x and y value--with appropriate whitespace for formattting
+        We then round up the value of y using math.h's ceiling function, and display that many '#'s, and then a new line
+    In lines 29-30 we then display the global maximum and minimum
+
+Testing:
+    I compiled and ran my program and compared it to a graph that Desmos created, and they were very similar. 
+    The maxima were also pretty much the same. It also looks similar to the example on the course website.

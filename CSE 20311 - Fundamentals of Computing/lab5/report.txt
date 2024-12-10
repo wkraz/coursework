@@ -1,0 +1,42 @@
+/*
+Will Krzastek
+Fund Comp
+Lab 5
+Sayings Manager
+*/
+
+User's perspective:
+    The user is first asked to input a file name, and is given an error message if it does not exist in the same directory
+    The user is displayed a menu and given 8 choices:
+        1 - display all sayings - displays every saying in the file, numbered by line
+        2 - enter a new saying - the user is prompted to enter a new saying, and then this saying is appended to the sayings array (they can check this by pressing 1 after this)
+        3 - list all sayings that contain a substring - the user is prompted to enter a substring, and then is displayed every saying that contains this substring, if applicable
+        4 - save all sayings to a new text file - the user is prompted a text file name and the contents of the sayings array are put into a file of that name
+        5 - display a random saying from the file - the user is displayed a random saying in the file 
+        6 - display every n sayings from the file - the user is prompted to enter a number between 1 and # sayings, and is displayed every multiple of that number's saying
+        7 - see if there's a duplicate saying - the user is displayed 'yes' and the duplicate saying if one exists, else nothing
+        8 - exit - the user presses 8 and the program exits with a message
+    
+
+Programmer's perspective:
+    This was definitely the most time intensive program so far (with looking up file i/o syntax and just the sheer number of non-trivial functions I had to write)
+    In main, I made a 2d sayings array within the constraints (max sayings and max length of each saying), got a file name from the user and opened it, and then relied on user defined functions to interact with the file
+    I wrote a load sayings function that opened a file to read, and saved each line into the sayings array, and returned the number of sayings in the file (which I used to make sure wasn't 0)
+    I split every choice into a function
+        1 - display sayings - uses a for loop that loops through the database and prints the string in every index of sayings
+        2 - add saying - first makes sure we're not at the max number of sayings by passing count by reference (because we want to increment it once we add a new saying, and we can't do this by passing by value). Then it gets a saying from the user and copies it into the last index of the sayings array. then it dereferences count and increments it by one, and then tells the user it's been added.
+        3 - search saying - first gets a substring from user input. Then it uses a for loop to go through the sayings array and uses strstr function to see if substring is a substring of sayings[i], if so it prints it to the user
+        4 - save sayings - gets file name from user and opens it (if possible). Then it loops through sayings and writes every saying to the new file using fprintf. then it closes the file and prints that it was successful (if it was)
+        5 - random saying - first makes sure that there are sayings in the file. if so, it calculates a random int from 0 to count-1 and prints the saying for that number. if count isn't > 0, it displays an error message.
+        6 - every n saying - first it gets user input and makes sure it's between 1 and count. Then it runs a for loop from n-1(because 0 index) to count, incremented by n to represent all multiples of n. Then it prints all the appropriate sayings out. If invalid input, it displays an error message.
+        7 - is duplicate - it loops through the sayings array and checks every element after it and uses strcmp to see if they are the same. If so, we set the duplicate bool (technically int) to true and note the index. If duplicate is true, we display to the user that it is and display the duplicated saying. else, we print 'no duplicates'
+        8 - exit - the while loop ends and the program ends
+    I used a simple switch statement to run the appropriate function based on the user's input
+    The main function was very easy, but some of the other functions were annoying to write like add saying and search saying 
+    Overall, I liked writing this program and enjoyed the creative aspect
+
+
+How I verified input:
+    I wrote an initial 10 Lebron quotes in a file sayings.txt. I then ran all the functions on it that don't change the content (everything except 2). They all worked perfectly. Then I added a new statement 'LEBROON JAMES' with #2, and it worked after I pressed #1 and saw it on the bottom as a saying.
+    I saved this to a new txt file: lebron_sayings.txt and it worked. In short, I ran all of my functions on multiple files and they all worked as I expected them to, so I concluded that my program works :D
+    I tested some invalid inputs: entering file name that doesn't exist, choosing an invalid choice (int that isnt 1-8), and in all cases I got an appropriate error message, so I know that my program handles invalid input correctly

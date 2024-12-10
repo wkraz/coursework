@@ -1,0 +1,61 @@
+Placing the word PROGRAMMING
+Placing the word NOTREDAME
+Placing the word COMPUTER
+Placing the word KEYBOARD
+Placing the word FUNCTION
+Placing the word CODE
+Couldn't place LOOP, adding it to the skipped list.
+Placing the word UND
+Placing the word CSE
+Placing the word NOT
+Placing the word IF
+Solution:
+-----------------
+|..........C....|
+|......KEYBOARD.|
+|.IF.......M....|
+|..U.......P....|
+|..NOT...P.U....|
+|..C..N..R.T....|
+|..T..O..O.E.C..|
+|.FIGHTINGIRISH.|
+|..O..R..R...E..|
+|..N..E..A......|
+|...CODE.M......|
+|.....A..M......|
+|.....M..I......|
+|.....E.UND.....|
+|........G......|
+-----------------
+Puzzle:
+-----------------
+|########## ####|
+|######        #|
+|#  ####### ####|
+|## ####### ####|
+|##   ### # ####|
+|## ## ## # ####|
+|## ## ## # # ##|
+|#             #|
+|## ## ## ### ##|
+|## ## ## ######|
+|###    # ######|
+|##### ## ######|
+|##### ## ######|
+|##### #   #####|
+|######## ######|
+-----------------
+
+Clues: 
+Location | Direction | Anagram
+    7, 1 |   Across | ITGIFGNHISHRI  
+    4, 8 |     Down | MPGMOGRIARN    
+    5, 5 |     Down | DMRNEATEO      
+    0,10 |     Down | RUPTOECM       
+    1, 6 |   Across | KRODEYBA       
+    2, 2 |     Down | UONIFCNT       
+   10, 3 |   Across | OECD           
+   13, 7 |   Across | UND            
+    6,12 |     Down | CSE            
+    4, 2 |   Across | TON            
+    2, 1 |   Across | IF             

@@ -1,0 +1,67 @@
+Will Krzastek
+Fund Comp
+Lab 4
+Lab Report
+
+User's perspective:
+    From the user's perspective, they run the program and are given 6 choices:
+    1. Display the record for a given year
+    2. Display years with at least 'n' losses
+    3. Display years with at least 'n' wins
+    4. Display years with at least 'n' more wins than losses
+    5. Display the record for the previous 5 years for a given year
+    6. Exit
+
+    They then choose one of these, and 1 of 6 things happens:
+        1 - they are prompted to enter a year, and the record for that year is displayed if it's a valid year (1900-current year)
+        2 - they are prompted to enter a number 'n' of losses, and every year that has >= n losses is displayed along with the wins/losses
+        3 - they are prompted to enter a number 'n' of wins, and every year that has >= n wins is displayed along with the wins/losses
+        4 - they are prompted to enter a number 'n' of the difference between wins and losses, and every year that has >= n difference is displayed along with the wins/losses
+        5 - they are prompted to enter a year, and the records for the previous 5 years are displayed if it's a valid year (1905-current year)
+        6 - they are displayed an exit message and the program ends
+
+Programmer's perspective:
+    Lines 8 - 38 include libraries and the global arrays we need
+    Line 40 calculates the size of the arrays and stores it in NUM_YEARS
+    Lines 43 - 47 are function prototypes
+    Lines 50 - 130 are the main function
+        Line 53 initializes choice as an int with an arbitrary value
+        Lines 55 - 127 are a while loop with the condition choice != 6
+            Lines 58 - 66 print the menu to the user and store their choice in choice
+            Lines 69 - 126 are a switch statement that run the appropriate function depending on the user's choice
+        Line 129 returns 0 to show the program was successful
+    Lines 132 - 147 are display_record_for_year function
+        Takes an int: year 
+        Line 135 gets the index we're in in the arrays by year - 1900
+        line 138 checks to make sure it's a valid year
+        Line 141 prints the year and the wins/losses 
+        Line 145 prints invalid if it's not valid
+    Lines 149 - 162 are display_years_with_min_losses function
+        Takes an int: min_losses
+        line 151 displays what's happening to the user
+        Lines 155 - 161 are a foor loop that goes through the loss array, checks if each entry is >= min_losses, and displays the year + wins/losses if so 
+    Lines 165 - 178 are display_years_with_min_wins function 
+        Takes an int: min_wins
+        line 167 displays what's happening to the user
+        Lines 171 - 177 are a foor loop that goes through the win array, checks if each entry is >= min_wins, and displays the year + wins/losses if so 
+    Lines 181 - 194 are the display_years_with_wins_more_than_losses function
+        Takes an int: difference
+        line 183 displays what's happening to the user
+        Lines 187 - 193 are a foor loop that goes through the arrays, checks if wins[i] - loss[i] is >= difference, and displays the year + wins/losses if so 
+    Lines 197 - 220 are the display_record_for_last_5_years function
+        Takes an int: year
+        line 202 checks to see if year is between 1905-current year
+            Line 204 prints 'record for previous 5 years'
+            Lines 206 - 209 display the past 5 years and their wins/losses
+        Line 214 displays an error message indicating year is between 1900-1904
+        Line 218 displays an error message: invalid
+
+How I tested:
+    I ran the program and went down the list by function sequentially
+    I started with function 1 and entered 1900, 2023, and a couple others and noticed the records were correct
+    I then did function 2 and did a couple different n's and noticed everything displayed indeed had >= n losses
+    I then did function 3 and did the same thing, but with wins and noticed it was also correct
+    I then did function 4 and a very similar thing, all the differences were >= difference
+    Then for 5 I did 2023 and saw it display 2018-2022 records, and I did 1904 and got an error message
+    I then pressed 6 and the exit message displayed and the program ended
+    So, my program works for all 6 functions

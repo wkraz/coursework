@@ -1,0 +1,72 @@
+Placing the word BROADWAY
+Placing the word THEATRE
+Placing the word SINGING
+Placing the word DANCING
+Couldn't place FUNZIES, adding it to the skipped list.
+Placing the word FINALLY
+Placing the word ACTING
+Couldn't place TRIPLE, adding it to the skipped list.
+Placing the word THREAT
+Couldn't place TWENTY, adding it to the skipped list.
+Placing the word WORLD
+Couldn't place HELLO, adding it to the skipped list.
+Placing the word WORLD
+Couldn't place WORDS, adding it to the skipped list.
+Placing the word THIS
+Couldn't place FUN, adding it to the skipped list.
+Placing the word FOR
+Placing the word FOR
+Placing the word IS
+Solution:
+-----------------
+|...............|
+|....F..WORLD...|
+|....O......A...|
+|..THREAT.S.N...|
+|..H....H.I.C...|
+|..I.B..E.N.IS..|
+|..S.R..A.G.N...|
+|...SOMETHING...|
+|..A.A..R.N.....|
+|..C.D..E.G.....|
+|..T.W..........|
+|.FINALLY.......|
+|..N.Y..........|
+|..G............|
+|...............|
+-----------------
+Puzzle:
+-----------------
+|###############|
+|#### ##     ###|
+|#### ###### ###|
+|##      # # ###|
+|## #### # # ###|
+|## # ## # #  ##|
+|## # ## # # ###|
+|###         ###|
+|## # ## # #####|
+|## # ## # #####|
+|## # ##########|
+|#       #######|
+|## # ##########|
+|## ############|
+|###############|
+-----------------
+
+Clues: 
+Location | Direction | Anagram
+    7, 3 |   Across | HTNEOSIGM      
+    5, 4 |     Down | DAAOBYRW       
+    3, 7 |     Down | HETRTAE        
+    3, 9 |     Down | IISGNNG        
+    1,11 |     Down | DACGNIN        
+   11, 1 |   Across | LYINAFL        
+    8, 2 |     Down | TAICNG         
+    3, 2 |   Across | TEHRTA         
+    1, 7 |   Across | WDORL          
+    1, 7 |   Across | WRDLO          
+    3, 2 |     Down | ISTH           
+    1, 4 |     Down | FRO            
+    1, 4 |     Down | FRO            
+    5,11 |   Across | IS             

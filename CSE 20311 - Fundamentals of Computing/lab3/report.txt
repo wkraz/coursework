@@ -1,0 +1,33 @@
+Will Krzastek
+Fund Comp
+Lab 3
+Lab report
+
+User perspective:
+    The user is asked to input a number 1-5: 1=addition, 2=subtraction,
+    3=multiplication, 4=division, 5=exit.
+    If they choose 5, the program ends.
+    They are then asked to input two numbers.
+    Then depending on the numbers chosen and the operation chosen, the user
+    is displayed the result of number1 __operation__ number2.
+    Then the program runs again and continues until they choose 5 to exit.
+
+Programmer's perspective:
+    In lines 12-19 I used function prototypes to call functions I'd use later.
+    In line 23 I initialized a while True loop
+    In line 26, I called a user defined function to get the operation choice from the user
+    In lines 29-33 I checked to see if the user wants to exit.
+        If so, I printed an exit message and break the while True loop.
+    In lines 36-37 I used user-functions to get the two numbers from the user.
+    In line 40 I call a user function to get the result from the user input.
+    In lines 43-75 I look at the operation and print an appropriate result message: + for addition, - for subtraction, etc.
+    In line 78 I return 0 to show the while True loop was exited successfully.
+    In lines 81-89 I create the get_operation function, which just gets user input for an int 1-5 and returns it.
+    In lines 91-105 I create the get_number functions which just simply get user input and return a double.
+    In lines 107-125 I create add, subtract, multiply, divide functions. Very straightforward.
+    In lines 127-152 I create the computation function which takes all user inputs in and returns the appropriate double value.
+
+Verifying validity:
+    To verify this, I did multiple examples with each operation and they all worked.
+    I then tried dividing by 0, and saw that I got an error message.
+    I then pressed 5 to exit and it worked, so I concluded this program works.

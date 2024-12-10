@@ -1,0 +1,64 @@
+Will Krzastek
+Lab 7
+Game of Life Report
+
+User perspective
+    The user can either enter a txt file as a second command line argument (only 1), or they can not enter one
+    If they enter a txt file, the program will print the initial board, and then play out the game of life until it ends
+    If they don't enter one, they will be shown an empty board and prompted to add/remove a square until they enter q to stop it. If they enter p, the game will start playing until it ends
+
+Programmer's perspective
+    From the programmer's perspective, lifefunc.c writes all the functions, and lifefunc.h has all the prototypes. The functions work as follows:
+    void printBoard(char[SIZE][SIZE]);
+    - prints the border for the board, and prints the actual contents of the board based on the board[][] array
+    void addCell(char[SIZE][SIZE], int, int);
+    - changes a cell's value at x, y to 'X'
+    void removeCell(char[SIZE][SIZE], int, int);
+    - changes a cell's value at x, y to ' '
+    int numNeighbors(char[SIZE][SIZE], int, int);
+    - returns the number of neighbors that are an 'X' to a cell (not including itself, and accounting for edges)
+    void updateBoard(char[SIZE][SIZE], char[SIZE][SIZE]);
+    - copies the contents of the first board array to the second
+    void nextIteration(char[SIZE][SIZE], char[SIZE][SIZE]);
+    - plays Conway's game of life. i.e. updates each cell's value according to the rules (alive and not 2-3 neighbors = die, dead cell with 3 neighbors = alive)
+
+    I then used these functions along with a simple switch statement in playlife.c (driver) that continously got the user's input (if no file), and called on the appropriate functions to do so 
+
+    scene.txt
+        creates still life (block)
+        a 3 3
+        a 3 4
+        a 4 3
+        a 4 4
+
+        oscillator
+        a 10 10
+        a 10 11
+        a 10 12
+
+        moving object (glider)
+        a 15 20
+        a 16 21
+        a 17 19
+        a 17 20
+        a 17 21
+
+        explosion
+        a 30 5
+        a 30 6
+        a 31 6
+        a 29 11
+        a 31 10
+        a 31 11
+        a 31 12
+
+        p (to actually play the scene out)
+    
+    Scene.txt has all the necessary elements outlined in the directions (still life, oscillator, moving object, explosion). it's passed as a command line argument and playlife.c runs it
+
+
+How output was verified
+    I verified the output by first adding more than 2 command line arguments and seeing an error message. I also added an invalid text file (one not in directory)
+    I then added 1 (scene.txt) and saw that all 4 behaviors above were followed
+    I then added none and played in interactive mode, I tested all of the commands and added a glider. I pressed p and saw it behave as a glider. Next time, I pressed q and saw the program quit. The last time, I pressed 'n' 5 times and watched it slowly glide.
+    Therefore, my program works as intended
