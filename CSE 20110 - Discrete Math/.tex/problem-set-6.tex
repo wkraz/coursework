@@ -1,0 +1,159 @@
+% Packages 
+%--------------------
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{xcolor}
+
+\usepackage[pdftex]{graphicx} % Required for including pictures
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage{calc} % To reset the counter in the document after title page
+\usepackage{enumitem} % Includes lists
+\usepackage{ stmaryrd }
+\frenchspacing % No double spacing between sentences
+\linespread{1.2} % Set linespace
+\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
+%\usepackage{parskip}
+
+\usepackage[all]{nowidow} % Tries to remove widows
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
+%---------------------------
+
+\begin{document} 
+\title{Discrete Math Problem Set 6}
+\author{Will Krzastek}
+\date{March 5th, 2024}
+\maketitle
+\emph{All basic arithmetic and algebraic facts about $\mathbb{N}$ and $\mathbb{Z}$ are now yours to use.}
+
+\begin{enumerate}
+    % 1
+    \item 
+    \begin{enumerate}
+
+        % 1a
+        \item 
+        Show that $(c \neq 0 \land ac \mid bc) \Rightarrow (a \mid b) $ for all $a, b, c \in \mathbb{Z} $. \\
+        \emph{\textbf{Proof.}} Let $a, b, c \in \mathbb{Z}$. Assume $c \neq 0 \land ac \mid bc $. By the definition of \emph{divisibility}, 
+        we know $(\exists z \in \mathbb{Z}) (ac \cdot z = bc)$. \\ 
+        Observe, $(acz = bc) \Leftrightarrow (az = b)$ by \emph{multiplicative cancellation}. Thus $(\exists z \in \mathbb{Z})(az = b) $. $ (\exists z \in \mathbb{Z})(az = b) \Leftrightarrow a \mid b$.
+        Therefore, $a \mid b $. Because we derived $a \mid b $ from our initial assumption, we know $(c \neq 0 \land ac \mid bc) \Rightarrow (a \mid b) $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 1b 
+        \item 
+        Show that $(n \mid x \land n \mid y) \Rightarrow (n \mid ax + by) $ for all $n, x, y, a, b \in \mathbb{Z} $. \\
+        \emph{\textbf{Proof.}} Let $n, x, y, a, b \in \mathbb{Z} $. Assume $n \mid x \land n \mid y $.
+        By the definition of \emph{divisibility}, we know $(\exists z \in \mathbb{Z}) (nz = x)$ and $(\exists h \in \mathbb{Z})(nh = y) $.
+        Thus, we can express $x $ and $y$ in terms of $n$ as: $x = nz  $, $y = nh $. Now take the expression $ax + by$.
+        \begin{align*}
+            ax + by 
+                &= a(nz) + b(nh)
+                    &\quad
+                    &\text{by equivalence} \\
+                &= n(az + bh)
+                    &\quad
+                    &\text{by basic factoring}
+        \end{align*}
+        Since $a, b, z, h \in \mathbb{Z} $, we know that $az + bh \in \mathbb{Z} $. We can then say $m = az + bh $ where $m \in \mathbb{Z} $.
+        So, we can say $ax + by = nm$. Because $m \in \mathbb{Z}$, by the definition of \emph{divisibility}, $n \mid ax + by $.
+        Because we derived this from our initial assumption, we know $(n \mid x \land n \mid y)\Rightarrow (n \mid ax + by) $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+    \end{enumerate}
+
+    % 2
+    \item 
+    For all $z \in \mathbb{Z} $, show that $z$ is even implies $z$ is not odd. \\
+    \emph{\textbf{Proof.}} Let $z \in \mathbb{Z}$. We want to show ($z$ is even) $\Rightarrow $ ($z$ is not odd).
+    By the definitions of even and odd, we can replace this with wanting to show $(2 \mid z) \Rightarrow (2 \nmid z - 1) $.
+    To do so, assume $2 \mid z $. \\
+    We will now prove that gcd $(z, z - 1) = 1 $. \\
+    T.A.C assume gcd $(n, n + 1) > 1 $. By the FLA, there must be a prime $p \in \mathbb{N}$ such that $p \mid gcd (n, n + 1) $.
+    So, $p \mid gcd (n, n + 1) \land gcd (n, n + 1) \mid n $. This implies that $p \mid n \land p \mid n + 1 $.
+    We can combine these linearly to say $p \mid n + 1 - n $ which is equivalent to $p \mid 1 $. Therefore $ | p | \leq | 1| \Rightarrow p \leq 1$.
+    However, $ p > 1$ because $p$ is prime. $\lightning$.       \\
+    So, we know that $ gcd (z, z - 1) = 1$. Therefore because $ 2 \mid z $, $2 \nmid z - 1 $.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+    % 3
+    \item 
+    \begin{enumerate}
+        % 3a
+        \item 
+        For all $n \in \mathbb{N}$, show that $n$ is odd implies $n + 1$ is even. \\
+        \emph{\textbf{Proof.}} Let $n \in \mathbb{N} $. We want to show $n$ is odd $\Rightarrow$ $n + 1$ is even. 
+        By the definitions of even and odd, we want to show $(2 \nmid n) \Rightarrow (2 \mid n + 1) $. To do so, assume $2 \nmid n $. 
+        Now we want to show $2 \mid n + 1 $. As proven in $2$, we know gcd $(n, n + 1) = 1 $. Therefore, since $2 \nmid n $, $2 \mid n + 1 $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3b
+        \item 
+        For all $n \in \mathbb{N} $, show that $n$ is even implies $n + 1$ is odd. \\
+        \emph{\textbf{Proof.}} Let $n \in \mathbb{N} $. We want to show $n$ is even $\Rightarrow n + 1$ is odd. By the definitions of even and odd, 
+        we want to show $2 \mid n \Rightarrow 2 \nmid n + 1 $. To do so, assume $2 \mid n $. 
+        As proven in 2, we know gcd $(n, n + 1) = 1 $. Since $2 \mid n $, we know that $2 \nmid n + 1 $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+    \end{enumerate}
+
+    % 4
+    \item 
+    Show that $3 \mid n^3 - n $ for all $n \in \mathbb{N}$. \\
+    \emph{\textbf{Proof.}} We will use a proof by \emph{induction}. \\
+    \emph{Basis step:} \\
+    We know that every number divides 0 by \emph{Lemma 5.1}. Therefore, $3 \mid 0 $.
+    By basic arithmetic we know $3 \mid 0 = 3 \mid (1 - 1)$. We know $1^3 - 1 = 1 - 1 $ by more arithmetic. So, we know $ 3 \mid 0 \Leftrightarrow 3 \mid 1^3 - 1 $. \\
+    \emph{Inductive step:} \\
+    Let $k \in \mathbb{N} $. Assume $3 \mid k^3 - k $. Now, we need to show $3 \mid (k + 1)^3 - (k + 1) $. 
+    We can say $(k + 1)^3 - (k + 1) \Leftrightarrow (k^3 - k) + 3k^2 + 3k $ by basic factoring. In our \emph{inductive hypothesis}, we assumed $3 \mid k^3 - k $.
+    Thus, $3p = k^3 - k $ where $p \in \mathbb{Z} $. So, we can substitute our expression and say $(k^3 - k) + 3k^2 + 3k \Leftrightarrow 3p + 3k^2 + 3k $. 
+    We can factor 3 out here and see $3p + 3k^2 + 3k \Leftrightarrow 3 (p + k^2 + k) $. Since $p, k \in \mathbb{Z} $, $(p + k^2 + k) \in \mathbb{Z} $. Now let $m = (p + k^2 + k)$ where $m \in \mathbb{Z}$.
+    We then obtain $3 (p + k^2 + k) \Leftrightarrow 3m$. We know that $3 \mid 3m $ because $3 \cdot m = 3m $. Thus, $3 \mid (k + 1)^ 3 - (k + 1) $. \\
+    Therefore by \emph{mathematical induction}, we know $(\forall n \in \mathbb{N})(3 \mid n^3 - n) $.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+
+    % 5
+    \item 
+    The \emph{Fibonacci Sequence} is the recursive function $\mathcal{F}: \mathbb{N} \rightarrow \mathbb{N}$.
+    \begin{align*}
+        \mathcal{F}(0) := 0 \\
+        \mathcal{F}(1) := 1 \\
+        \mathcal{F}(n + 2) := \mathcal{F}(n + 1) + \mathcal{F}(n)
+    \end{align*}
+    Show that $1 + \displaystyle\sum_{i = 0}^{n} \mathcal{F}(i) = \mathcal{F}(n + 2)$ for all $n \in \mathbb{N}$. \\
+    \emph{\textbf{Proof.}} We will use a proof by \emph{induction}. \\
+    \emph{Basis step:} \\
+    $1 + \displaystyle\sum_{i = 0}^{0} \mathcal{F}(i) = 1 + 0 = 1$ by the definitions of \emph{summation and addition}. \\
+    $\mathcal{F}(0 + 2) := \mathcal{F}(0 + 1) + \mathcal{F}(0) $. By the definition of the \emph{Fibonacci Sequence}, we know $\mathcal{F}(1) = 1 $ and $\mathcal{F}(0) = 0 $. 
+    Therefore, $\mathcal{F}(0 + 2) = 1 + 0 = 1 $ by simple addition. \\
+    Therefore, $1 + \displaystyle\sum_{i = 0}^{0} \mathcal{F}(i) =\mathcal{F}(0 + 2) $. \\
+    \emph{Inductive step:} \\
+    Let $k \in \mathbb{N} $. Assume $1 + \displaystyle\sum_{i = 0}^{k} \mathcal{F}(i) =\mathcal{F}(k + 2) $ because this is our inductive hypothesis.
+    Now, we need to show $1 + \displaystyle\sum_{i = 0}^{k + 1} \mathcal{F}(i) =\mathcal{F}(k + 1 + 2) $. \\
+    By the definition of \emph{summation}, $1 + \displaystyle\sum_{i = 0}^{k + 1} \mathcal{F}(i) = 1 + \displaystyle\sum_{i = 0}^{k} \mathcal{F}(i) + \mathcal{F}(k + 1)$.
+    By our \emph{inductive hypothesis}, we know $1 + \displaystyle\sum_{i = 0}^{k} \mathcal{F}(i) = \mathcal{F}(k + 2) $. So, $1 + \displaystyle\sum_{i = 0}^{k + 1} \mathcal{F}(i) = \mathcal{F}(k + 2) + \mathcal{F}(k + 1)$.
+    Now, by the definition of the \emph{Fibonacci Sequence}, we know $\mathcal{F}(k + 3) := \mathcal{F}(k + 2) + \mathcal{F}(k + 1)$. Because $k + 3 = k + 1 + 2 $ by addition, we know 
+    $1 + \displaystyle\sum_{i = 0}^{k + 1} \mathcal{F}(i) =\mathcal{F}(k + 1 + 2) $. \\
+    Therefore, by \emph{mathematical induction}, we know $1 + \displaystyle\sum_{i = 0}^{n} \mathcal{F}(i) = \mathcal{F}(n + 2)$.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+\end{enumerate}
+
+
+
+
+\end{document}

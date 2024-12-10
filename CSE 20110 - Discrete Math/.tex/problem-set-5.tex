@@ -1,0 +1,311 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{xcolor}
+
+\usepackage[pdftex]{graphicx} % Required for including pictures
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage{calc} % To reset the counter in the document after title page
+\usepackage{enumitem} % Includes lists
+\usepackage{ stmaryrd }
+\frenchspacing % No double spacing between sentences
+\linespread{1.2} % Set linespace
+\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
+%\usepackage{parskip}
+
+\usepackage[all]{nowidow} % Tries to remove widows
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
+
+% Begin document
+%-----------------------
+
+\begin{document} 
+\title{Discrete Math Problem Set 5}
+\author{Will Krzastek}
+\date{February 27, 2024}
+\maketitle
+
+\begin{enumerate}
+    % 1
+    \item[(15 pts) \quad 1.]
+    Find and explain the flaw(s) in the argument: \\
+    We prove every nonempty set of people all have the same age. \\
+    \emph{\textbf{Proof.}} We denote the age of a person $p$ by $\alpha(p)$. \\
+    \emph{Basis step}: \\
+    Suppose $P = \{{p}\}$ is a set with one person in it.
+    Clearly, all the people in $P$ have the same age as each other. \\
+    \emph{Inductive step}: \\
+    Let $k \in \mathbb{N}_+$ and suppose any set of $k$-many people all have the same age.
+    Let $P = \{p_1, p_2, \dots p_k, p_{k + 1}\}$ be a set with $k + 1$ people in it.
+    Consider $L := \{p_1, \dots p_k\}$ and $R := \{p_2, \dots p_{k + 1}\}$.
+    Since $L$ and $R$ both have $k$ people, we know everyone in these sets has the same age by the \emph{inductive hypothesis.} \\
+    Let $\ell, r \in P$.
+    If $\ell \in L \land r \in L$, then $\alpha(\ell) = \alpha(r)$.
+    Similarly, if $\ell \in R \land r \in R$, then $\alpha(\ell) = \alpha(r)$.
+    Now, suppose $\ell \in L \land r \in R$.
+    \begin{equation*}
+        \alpha(\ell) = \alpha(p_1) = \alpha(p_2) = \alpha(p_{k + 1}) = \alpha(r)
+      \end{equation*}
+      So, all people in $P$ have the same age. \\
+      Therefore, everyone on Earth has the same age.
+      
+      \textbf{Flaws in the argument:} \\
+      This argument does not hold because $\alpha(p_1) $ does not have to $= \alpha p_2 $. \\
+      Consider the case where $k = 1$ and $P$ therefore has two elements. A problem arises in the step: ``Since $L$ and $R$ both have $k$ people, we know everyone in these sets has the same age by the \emph{inductive hypothesis}''.
+      We define $L$ and $R$ as $L := \{p_1 \} $ and $R := \{p_2\} $. By the inductive hypothesis, everyone in $L$ and $R$ has the same age since they are sets with $k$ people in them.
+      However, there is no relationship between $\alpha (p_1) $ and $\alpha (p_2)$. So, $p_1$ and $p_2$ do not have to have the same age. Therefore, when $k=1$, everyone in $ L$ and $R$ has the same age, but there can be people with different ages in $P$.
+      Therefore, this argument is incorrect because it does not hold when $k=1$.  
+
+    % 2
+    \item[(20 pts) \quad 2.]
+    Show that $\forall x (x \neq x \cup \{x\}) $. \\
+    \emph{\textbf{Proof.}} Let $x$ be an arbitrary set. $x \cup \{x\} := \{z \mid z \in x \land z \in \{x\} \} $.
+    Let $z = x $. Towards a contradiction, assume $x = x \cup \{x\}. $ By definition of union, we can then say $x = x \in x \land x \in \{x\} $. By \emph{conjunction elimination}, we get $x = x \in x $.  However by \emph{Russell's Paradox}, we know $x \notin x $ $\lightning$.
+    Therefore, $x \neq x \cup \{x\} $.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+
+    \item[(15 pts) \quad 3.]
+    We will work up to a proof of the commutativity of addition on $\mathbb{N}$.
+    \begin{enumerate}
+        
+        % 3a
+        \item 
+        Show $(\forall x \in \mathbb{N})(x + 0 = 0 + x) $. \\
+        To show $x + 0 = 0 + x $ we will use \emph{induction}. \\
+        \emph{Basis step:} \\
+        By definition of \emph{addition}, we know $0 + 0 = 0 $. By definition of \emph{addition} again, we know $0 + 0 = 0 + 0 $. 
+        Therefore, we know $x + 0 = 0 + x $  when $x = 0 $. \\
+        \emph{Inductive step:} \\
+        Let $k \in \mathbb{N} $. Assume $k + 0 = 0 + k $ because this is our inductive hypothesis.
+        Now, we need to show $S(k) + 0 = 0 + S(k) $. \\
+        Observe $0 + S(k) = S(0 + k) $ by the definition of \emph{addition}. By the inductive hypothesis, we know $0 + k = k + 0 $. By the definition of \emph{addition}, we know $k + 0 = k $. 
+        Therefore, we obtain $0 + S(k) = S(k) $. By the definition of \emph{addition}, we obtain $S(k) + 0 $. 
+        Therefore, $S(k) + 0 = 0 + S(k) $.  \\
+        By \emph{mathematical induction}, $(\forall x \in \mathbb{N})(x + 0 = 0 + x) $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3b 
+        \item 
+        Show $(\forall x, y \in \mathbb{N})(x + s(y) = s(y) + x) $. \\
+        Let $y \in \mathbb{N} $. To show $x + S(y) = S(y) + x $ we will use \emph{induction}. \\
+        \emph{Basis step:} \\
+        As we proved in \emph{3(b)}, $0 + S(y) = S(y) + 0 $, so $x + S(y) = S(y) + x$. \\
+        \emph{Inductive step:} \\
+        Let $k \in \mathbb{N}$. Assume $k + S(y) = S(y) + k $ because this is our inductive hypothesis.
+        Now, we need to show $S(k) + S(y) = S(y) + S(k) $. \\
+        Observe, $S(y) + S(k) = S(S(y) + k)$. By our inductive hypothesis, we know $S(y) + k = k + S(y) $. Therefore, $S(k + S(y)) $. By the definition of \emph{addition}, we get $k + S(S(y)) $.
+        By definition, we know $S(S(y)) = 1 + S(y) $. So we can say $k + 1 + S(y) $. By definition again, we know $k + 1 = S(k) $.
+        So, we obtain $S(k) + S(y) $. Therefore, we obtain $S(k) + S(y) = S(y) + S(k) $. \\
+        By \emph{mathematical induction}, $(\forall x, y \in \mathbb{N})(x + S(y) = S(y) + x) $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3c
+        \item 
+        Show $(\forall x, y \in \mathbb{N})(x + y = y + x) $.  \\
+        Let $y \in \mathbb{N} $. To show $x + y = y + x $ we will use \emph{induction}. \\
+        \emph{Basis step:} \\
+        As we proved in \emph{3(a)}, $0 + y = y + 0$. So, $x + y = y + x $. \\
+        \emph{Inductive step:} \\
+        Let $k \in \mathbb{N}$. Assume $k + y = y + k $ because this is our inductive hypothesis. Now we need to show $S(k) + y = y + S(k) $.  \\
+        As we proved in  \emph{3(b)}, $S(k) + y = y + S(k) $. \\
+        By \emph{mathematical induction}, $(\forall x, y \in \mathbb{N})(x + y = y + x) $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+    \end{enumerate}
+
+    % 4
+    \item[(15 pts) \quad 4.]
+    Show $(\forall x, y, z \in \mathbb{N})(x \cdot (y + z) = (x \cdot y) + (x \cdot z)) $. \\
+    Let $x, y \in \mathbb{N} $. To show $x \cdot (y + z) = (x \cdot y) + (x \cdot z) $, we will use \emph{induction}.\\
+    \emph{Basis step:} 
+    \begin{align*}
+        x \cdot (y + 0)
+            &= x \cdot y
+                &\quad 
+                &\text{by \emph{definition of addition}} \\
+            &= (x \cdot y) + 0 
+                &\quad
+                &\text{by \emph{definition of addition}} \\
+            &= (x \cdot y) + (x \cdot 0)
+                &\quad
+                &\text{by \emph{definition of multiplication}} 
+    \end{align*} 
+    Thus, $(x \cdot (y + z) = (x \cdot y) + (x \cdot z)) $. \\
+    \emph{Inductive step:} \\
+    Let $k \in \mathbb{N} $. Assume $(x \cdot (y + k) = (x \cdot y) + (x \cdot k)) $ because this is our inductive hypothesis. \\
+    Now we need to show $(x \cdot (y + S(k)) = (x \cdot y) + (x \cdot S(k))) $. 
+    \begin{align*}
+        x \cdot (y + S(k))
+            &= x \cdot (S(y + k))
+                &\quad
+                &\text{by \emph{definition of addition}} \\
+            &= x \cdot (y + k) + x
+                &\quad
+                &\text{by \emph{definition of multiplication}} \\
+            &= ((x \cdot y) + (x \cdot k)) + x
+                &\quad
+                &\text{by \emph{inductive hypothesis}} \\
+            &= (x \cdot y) + ((x \cdot k) + x)
+                &\quad
+                &\text{by \emph{associativity of addition}} \\
+            &= (x \cdot y) + (x \cdot S(k)) 
+                &\quad
+                &\text{by \emph{definition of multiplication}}
+    \end{align*}
+    Thus, $(x \cdot (y + z) = (x \cdot y) + (x \cdot z)) $. \\
+    By \emph{mathematical induction}, $(\forall x, y, z \in \mathbb{N})(x \cdot (y + z) = (x \cdot y) + (x \cdot z)) $.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+    
+
+    % 5
+    \item[(15 pts) \quad 5.]
+    For this problem, you may assume the commutativity and associativity of addition and multiplication over $\mathbb{N} $. You may also assume 
+    multiplication distributes over addition on $\mathbb{N}$. Prove the following 
+    statement for all $n \in \mathbb{N} $.
+    \begin{equation*}
+        1 + \sum_{i = 0}^{n} 2^i = 2^{n + 1}
+    \end{equation*}
+    To show this, we will use \emph{induction}. \\
+    \emph{Basis step:} \\
+    Observe,
+    \begin{align*}
+        1 + \sum_{i = 0}^{0} 2^i
+            &= 1 + 2^0
+                &\quad
+                &\text{by \emph{definition of summation}} \\
+            &= 1 + 1
+                &\quad
+                &\text{by \emph{definition of exponenentiation}} \\
+            &= 2
+                &\quad
+                &\text{as proven in class} \\
+            &= 2 + 0
+                &\quad
+                &\text{by \emph{definition of addition}} \\
+            &= 0 + 2
+                &\quad
+                &\text{by \emph{commutativity of addition}} \\
+            &= (2 \cdot 0) + 2
+                &\quad
+                &\text{by \emph{definition of multiplication}} \\
+            &= 2 \cdot S(0)
+                &\quad
+                &\text{by \emph{definition of multiplication}} \\
+            &= 2 \cdot 1
+                &\quad
+                &\text{by \emph{definition of successor}} \\
+            &= 2 \cdot 2^0
+                &\quad
+                &\text{by \emph{definition of exponentiation}} \\
+            &= 2^{S(0)}
+                &\quad
+                &\text{by \emph{definition of exponentiation}} \\
+            &= 2^1
+                &\quad
+                &\text{by \emph{definition of successor}} \\
+            &= 2^{1 + 0}
+                &\quad
+                &\text{by \emph{definition of addition}} \\
+            &= 2^{0 + 1}
+                &\quad
+                &\text{by \emph{commutativity of addition}}
+    \end{align*}
+    Therefore:
+    \begin{equation*}
+        1 + \sum_{i = 0}^{n} 2^i = 2^{n + 1}
+    \end{equation*}
+    \emph{Inductive step:} \\
+    Let $k \in \mathbb{N} $. By the inductive hypothesis, assume:
+    \begin{equation*}
+        1 + \sum_{i = 0}^{k} 2^i = 2^{k + 1}
+    \end{equation*}
+    Now, we want to show: 
+    \begin{equation*}
+        1 + \sum_{i = 0}^{S(k)} 2^i = 2^{S(k) + 1}
+    \end{equation*}
+
+    Observe, 
+    \begin{align*}
+        1 + \sum_{i = 0}^{S(k)} 2^i
+            &=  1 + (\sum_{i = 0}^{k} 2^i + 2^{S(k)})
+                &\quad
+                &\text{by \emph{definition of summation}} \\
+            &=  (1 + \sum_{i = 0}^{k} 2^i) + 2^{S(k)}
+                &\quad
+                &\text{by \emph{associavity of addition}} \\
+            &= 2^{k + 1} + 2^{S(k)}
+                &\quad
+                &\text{by \emph{inductive hypothesis}} \\
+            &= 2^{S(k)} + 2^{S(k)}
+                &\quad
+                &\text{by \emph{definition of successor}} \\
+            &= (2^{S(k)} \cdot 1) + 2^{S(k)}
+                &\quad
+                &\text{by \emph{mult. identity (proved in basis step)}} \\
+            &= 2^{S(k)} \cdot S(1)
+                &\quad
+                &\text{by \emph{definition of multiplication}} \\
+            &= 2^{S(k)} \cdot 2
+                &\quad
+                &\text{by \emph{definition of successor}} \\
+            &= 2 \cdot 2^{S(k)}
+                &\quad
+                &\text{by \emph{commutativity of multiplication}} \\
+            &= 2^{S(S(k))}
+                &\quad
+                &\text{by \emph{definition of exponentiation}} \\
+            &= 2^{S(k) + 1}
+                &\quad
+                &\text{by \emph{definition of successor}}
+    \end{align*}
+    Therefore: 
+    \begin{equation*}
+        1 + \sum_{i = 0}^{S(k)} 2^i = 2^{S(k) + 1}
+    \end{equation*}
+    By \emph{mathematical induction}, $\forall n \in \mathbb{N} $:
+    \begin{equation*}
+        1 + \sum_{i = 0}^{n} 2^i = 2^{n + 1}
+    \end{equation*}
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+
+    % 6 
+    \item[(20 pts) \quad 6.]
+    We say $x$ is \emph{$\in$-transitive} by definition when $(\forall y \in x)(\forall z \in y)(z \in x) $.
+    Show that every natural number is \emph{$\in$-transitive}. \\
+    Let $y, z \in \mathbb{N} $. To show every natural number is $\in $-transitive, we will use \emph{induction}. \\
+    \emph{Basis step:} \\
+    Observe, $(\forall y \in 0)(\forall z \in y)(z \in 0) $. \\
+    Because $0 := \varnothing $, we know $y \in \varnothing $. However, since the empty set is empty, $y \notin \varnothing $ $\lightning$. Therefore by the \emph{explosion theorem}, we conclude that $z \in \varnothing $. \\
+    \emph{Inductive step:} \\
+    Let $k \in \mathbb{N} $. Assume $(\forall y \in k)(\forall z \in y)(z \in k) $ because this is our inductive hypothesis. \\
+    We want to show that $(\forall y \in S(k))(\forall z \in y)(z \in S(k)) $. \\
+    Observe: \\
+    $S(k) := k \cup \{k\}$. \\ 
+    Let $a \in S(k) $. By definition, $a \in k \lor a \in \{k\} $. \\
+    In the case $a \in k $, by the \emph{Inductive Hypothesis} we know $(\forall z \in a)(z \in k) $. \\
+    In the case $a \in \{k\} $, by \emph{extensionality} we know $a = k $. By \emph{extensionality} again, since we know $(\forall z \in a)$, we then know $(z \in k) $.  \\
+    In either case, $(\forall z \in a)(z \in k) $. Since we chose an arbitrary element $a$ of $S(k) $ and proved $(\forall z \in a)(z \in k) $, 
+    we can say $(\forall b \in S(k)(\forall z \in b)(z \in S(k))) $. \\
+    Therefore, by \emph{mathematical induction}, we know $(\forall y \in x)(\forall z \in y)(z \in x) $ and consequently know that every natural number is $\in$-transitive.
+    \begin{flushright}
+        $\blacksquare$
+    \end{flushright}
+
+\end{enumerate}
+
+\end{document}

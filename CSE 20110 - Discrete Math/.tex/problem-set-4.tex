@@ -1,0 +1,266 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{xcolor}
+
+\usepackage[pdftex]{graphicx} % Required for including pictures
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage{calc} % To reset the counter in the document after title page
+\usepackage{enumitem} % Includes lists
+\usepackage{ stmaryrd }
+\frenchspacing % No double spacing between sentences
+\linespread{1.2} % Set linespace
+\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
+%\usepackage{parskip}
+
+\usepackage[all]{nowidow} % Tries to remove widows
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
+
+% Begin document
+%-----------------------
+
+\begin{document} 
+\title{Discrete Math Problem Set 4}
+\author{Will Krzastek}
+\date{February 20, 2024}
+\maketitle
+
+\begin{enumerate}
+    \item[(20 pts) \quad 1.]
+    \begin{enumerate}
+        % 1a
+        \item 
+        Show $\forall x (\varnothing \subseteq x)$. \\
+        \emph{\textbf{Proof.}} Let $x$ be an arbitrary set. Towards a contradiction, suppose $\varnothing \nsubseteq x$. 
+        Then there exists some $z$ such that $z \subseteq \varnothing \land z \nsubseteq x$ by definition. This claims that $z \in \varnothing$.
+        However, we know $\forall y(y \notin \varnothing)$. $\lightning$. Therefore, $\varnothing \subseteq x$.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+        
+        % 1b
+        \item 
+        Show $\forall x (x \subseteq x)$. \\
+        \emph{\textbf{Proof.}} Let $x$ and $z$ be arbitrary sets. We know that $z \in x \Rightarrow z \in x$. Therefore by the definition of a subset, $x \subseteq x$. 
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 1c 
+        \item 
+        Show $\forall x (\varnothing \in \mathbb{P} (x))$. \\
+        \emph{\textbf{Proof.}} Let $x$ be an arbitrary set. By Axiom 4, $\mathbb{P} (x) := \{z \mid z \subseteq x\}$. In \emph{$1a$}, we showed that $\forall x (\varnothing \subseteq x)$. 
+        So, $\varnothing \in z$. Therefore, $\varnothing \in \mathbb{P} (x)$.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 1d
+        \item 
+        Show $\forall x (x \in \mathbb{P} (x))$. \\
+        \emph{\textbf{Proof.}} Let $x$ be an arbitrary set. By Axiom 4, $\mathbb{P} (x) := \{z \mid z \subseteq x\}$. In \emph{1(b)}, we showed that $\forall x (x \subseteq x)$. So, $x \in z$. Therefore, $x \in \mathbb{P} (x)$.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 1e
+        \item 
+        Show $\forall x \forall y \forall z (((x \subseteq y) \land (y \subseteq z)) \Rightarrow x \subseteq z)$. \\
+        \emph{\textbf{Proof.}} Let $x, y, z$ be arbitrary sets. To show $((x \subseteq y) \land (y \subseteq z)) \Rightarrow x \subseteq z$, assume $(x \subseteq y) \land (y \subseteq z)$. 
+        Now suppose $a \in x$. Because $x \subseteq y$, we know $a \in y$. Because $y \subseteq z$, we know $a \in z$. 
+        Because we chose an arbitrary element of $x$ and proved it must be an element of $z$, we can say $\forall s (s \in x \Rightarrow s \in z)$.
+        By the definition of a subset, we can then say $x \subseteq z$. Because we derived $x \subseteq z$, from our assumption of $(x \subseteq y) \land (y \subseteq z)$, we can say $(x \subseteq y) \land (y \subseteq z) \Rightarrow x \subseteq z$.  
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+    \end{enumerate}
+
+    \item[(10 pts) \quad 2.]
+    We define the \emph{intersection} and \emph{difference} of any two sets $x$ and $y$ below.
+    \begin{equation*}
+     x \cap y := \{ z \mid z \in x \land z \in y\} \\ 
+    \end{equation*}
+    \begin{equation*}
+        x \backslash y := \{ z \mid z \in x \land z \notin y\} 
+    \end{equation*}
+    \begin{enumerate}
+
+        % 2a
+        \item 
+        Show $\forall x \forall y \exists z (z = x \cap y)$. \\
+        \emph{\textbf{Proof.}} Let $x, y, z$ be arbitrary sets. By \emph{Schema of Separation}, we know that $\forall x \exists z (z = \{t \mid t \in x \land \varphi (t)\})$.
+        Now, let the predicate $\varphi (t) := t \in y$. We can then equivalently say $\forall x \forall y \exists z (z = \{t \mid t \in x \land t \in y\}). $
+        By the definition of \emph{intersection}, we can then say $\forall x \forall y \exists z (z = x \cap y)$.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 2b
+        \item 
+        Show $\forall x \forall y \exists z (z = x \backslash y)$. \\
+        \emph{\textbf{Proof.}} Let $x, y, z$ be arbitrary sets. By \emph{Schema of Separation}, we know that $\forall x \exists z (z = \{t \mid t \in x \land \varphi (t) \} ).  $ 
+        Now let the predicate $\varphi (t) := t \notin y  $. We can then equivalently say $\forall x \forall y \exists z (z = \{t \mid t \in x \land t \notin y \} ).  $ 
+        By the definition of \emph{difference}, we can then say $\forall x \forall y \exists z (z = x \backslash y ).  $ 
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+    \end{enumerate}
+    \item[(20 pts) \quad 3.]
+    We define the \emph{union} of two sets $x$ and $y$ below as: 
+    \begin{equation*}
+        x \cup y := \{z \mid z \in x \lor z \in y \}.
+    \end{equation*}
+    \begin{enumerate}
+        
+        % 3a
+        \item 
+        Show $\forall x \forall y (x \cap y \subseteq x)$. \\
+        \emph{\textbf{Proof.}} Let $x, y$ be arbitrary sets. \\
+        Suppose $a \in x \cap y$. We now know that $a = \varnothing \lor a \neq \varnothing$.
+        In the case $a = \varnothing$, we know $\varnothing \subseteq x$ because we proved it in \emph{1a}.
+        In the case $a \neq \varnothing$, we know $a \in x \land a \in y$ by the definition of \emph{intersection}. By \emph{conjunciton elimination}, we know $a \in x$. Because we showed this for an arbitrary element of $x \cap y$, we can say $\forall b (b \in x \cap y \Rightarrow b \in x)$.
+        By the definition of a subset, we now obtain $x \cap y \subseteq x$. 
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3b
+        \item 
+        Show $\forall x \forall y (x \subseteq x \cup y)$. \\
+        \emph{\textbf{Proof.}} Let $x, y$ be arbitrary sets. \\
+        Suppose $a \in x$. \\
+        $x \cup y := \{b \mid  b \in x \lor b \in y \}$. Since we know $a \in x $, by \emph{disjunction introduction}, we can say $a \in x \lor a \in y$. By the definition of \emph{union} we then know $a \in x \cup y$.
+        Because we derived $a \in x \cup y$ from our assumption $a \in x$. We can say $a \in x \Rightarrow a \in x \cup y$.
+        Since we chose an arbitrary element of $x$, we can say $\forall c (c \in x \Rightarrow c \in x \cup y)$.
+        This is the definition of a subset, so we obtain $x \subseteq x \cup y$.   
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3c
+        \item 
+        Show $\forall x \forall y (\mathbb{P} (x) \cup \mathbb{P} (y) \subseteq \mathbb{P} (x \cup y))$. \\
+        \emph{\textbf{Proof.}} Let $x, y$ be arbitrary sets. \\
+        Suppose $a \subseteq x$ and separately suppose $b \subseteq y$. \\
+        Because $\mathbb{P} (x)$ is defined as a set of all the subsets of $x$, we know that $a \in \mathbb{P} (x) $.
+        Similarly, $\mathbb{P} (y) $ is defined as a set of all the subsets of $y$, so we know that $b \in \mathbb{P} (y) $.
+        By \emph{2b} we know that $x \subseteq x \cup y$. Because $a \subseteq x$, we can say $a \subseteq x \cup y$.
+        Because $b \subseteq y$, we can say $b \subseteq x \cup y$. Since $a$ and $b$ are both subsets of $x \cup y$, we can say $a \cup b \subseteq x \cup y$. 
+        Because $\mathbb{P} (x \cup y)$ is the set of all the subsets of $x \cup y$ and $a \cup b$ is a subset of $x \cup y$, we can say $a \cup b \in \mathbb{P} (x \cup y)$.
+        Because we derived $a \cup b \in \mathbb{P} (x \cup y)$ from $a \in \mathbb{P} (x) \cup b \in \mathbb{P} (y)$,
+        we can say $a \in \mathbb{P} (x) \cup b \in \mathbb{P} (y) \Rightarrow a \cup b \in \mathbb{P} (x \cup y)$. Because we chose arbitrary elements of $x$ and $y$, 
+        we can say $\forall c \forall d (c \in \mathbb{P} (x) \cup d \in \mathbb{P} (y) \Rightarrow c \cup d \in \mathbb{P} (x \cup y))$.
+        This is the definition of a subset, so we obtain $\mathbb{P} (x) \cup \mathbb{P} (y) \subseteq \mathbb{P} (x \cup y)$.  
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 3d
+        \item 
+        Show $\forall x \forall y (x \cap y = x \Leftrightarrow x \in \mathbb{P} (y))$. \\
+        \emph{\textbf{Proof.}} Let $x, y$ be arbitrary sets. \\
+        To show $x \cap y = x \Leftrightarrow x \in \mathbb{P} (y)$, we need to show: (1) $x \cap y = x \Rightarrow x \in \mathbb{P} (y) $ and (2) $x \in \mathbb{P} (y) \Rightarrow x \cap y = x $
+            \begin{enumerate}
+                \item 
+                We want to show that $x \cap y = x \Rightarrow x \in \mathbb{P} (y) $. \\
+                Assume $x \cap y = x$. \\ 
+                $x \cap y := \{z \mid z \in x \land z \in y\} $. By \emph{extensionality}, we then know $\forall z (z \in x \Leftrightarrow z \in x \cap y) $.  
+                By the definition of \emph{intersection}, we can equivalently say $\forall z(z \in x \Leftrightarrow z \in x \land z \in y )$. Now assume $z \in x $. By \emph{modus ponens} we get $z \in x \land z \in y $. By \emph{conjunction elimination}, we get $z \in y $.
+                Because $z \Leftrightarrow z \in x \land z \in y $, we know $z \in x \Rightarrow z \in x \land z \in y $. Because we chose an arbitrary $z$, and derived $z \in y $ from $z \in x $, so we can say $\forall h (h \in x \Rightarrow h \in y) $. 
+                This is the definition of a subset, so we can say $x \subseteq y $. By the definition of a power set, we know $x \in \mathbb{P} (y) $. So, $x \cap y = x \Rightarrow x \in \mathbb{P} (y) $.   
+
+                \item 
+                We now want to show that $x \in \mathbb{P} (y) \Rightarrow x \cap y = x $. \\
+                Assume $x \in \mathbb{P} (y) $. \\
+                Because $x$ is in the power set of $y$, we know that $x \subseteq y $. $x \subseteq y := \{z \mid z \in x \Rightarrow z \in y \} $.
+                So, we know that $z \in x \Rightarrow z \in y $. To show $x \cap y = x $, we want to show $z \in x \Leftrightarrow z \in x \land z \in y $.
+                To do so, we will show (1) $z \in x \Rightarrow z \in x \land z \in y $ and (2) $z \in x \land z \in y \Rightarrow z \in x $.
+                    \begin{enumerate}
+                        \item[1.]
+                        Assume $z \in x $. Because $x \subseteq y $, we know $z \in x \Rightarrow z \in y $. By \emph{conjunction introduction}, we then get $z \in x \Rightarrow z \in x \land z \in y $.
+                        \item[2.]
+                        Assume $z \in x \land z \in y $. By \emph{conjunction elimination}, we get $z \in x $. Since we derived $z \in x $ from our assumption, we can say $z \in x \land z \in y \Rightarrow z \in x $.    
+                    \end{enumerate}
+                So, $z \in x \Leftrightarrow z \in x \land z \in y $. Because this was an arbitrary $z$, we can say $\forall a (a \in x \Leftrightarrow a \in x \land a \in y) $. 
+                By the definition of \emph{intersection}, we can say $\forall a (a \in x \Leftrightarrow a \in x \cap y) $. 
+                By \emph{existentiality}, we can reduce this to $x = x \cap y $. So, $x \in \mathbb{P} (y) \Rightarrow x = x \cap y $.     
+            \end{enumerate}
+            Because we proved $x \cap y = x \Rightarrow x \in \mathbb{P} (y) $ and $x \in \mathbb{P} (y) \Rightarrow x \cap y = x $, we know $x \cap y = x \Leftrightarrow x \in \mathbb{P} (y)$.
+            \begin{flushright}
+                $\blacksquare$
+            \end{flushright}
+    \end{enumerate}
+    \item[(50 pts) \quad 4.]
+    We define the \emph{union over x} and \emph{intersection over x} for any set $x$ below. 
+        \begin{equation*}
+            \cup x := \{z \mid \exists y (y \in x \land z \in y) \}
+        \end{equation*}
+        \begin{equation*}
+            \cap x := \{z \mid \forall y (y \in x \Rightarrow z \in y) \}
+        \end{equation*}
+    \begin{enumerate}
+        
+        % 4a 
+        \item 
+        Show that $\forall x (\cup \mathbb{P} (x) = x) $. \\
+        \emph{\textbf{Proof.}} Let $x $ be an arbitrary set. \\
+        By \emph{1(d)}, we know $x \in \mathbb{P}(x) $. We also know $\cup \mathbb{P}(x) := \{z \mid \exists y (y \in \mathbb{P}(x) \land z \in y) \}$.
+        By \emph{existential elimination}, we can then say $\{z \mid x \in \mathbb{P}(x) \land z \in x \} $. 
+        Since we know $x \in \mathbb{P}(x) $, by \emph{conjunction elimination} we can say $\{z \mid z \in x \}  $.
+        Since all elements of $\{z \mid z \in x \}  $ are in $x$, and all elements of $x$ are in $\{z \mid z \in x \}  $, by \emph{existentiality} we can conclude $\{z \mid z \in x \} = x $.
+        Since we determined $\{z \mid z \in x \} = \cup \mathbb{P}(x) $, we conclude $\cup \mathbb{P}(x) = x $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 4b
+        \item 
+        \emph{\textbf{Proof.}} What is $\cup \varnothing $? Justify your answer with a proof. \\
+        We know that $\cup \varnothing := \{z \mid \exists y (y \in \varnothing \land z \in y) \} $. 
+        However, by the definition of the empty set, we know there is no $y$ such that $y \in \varnothing $. As such, $\cup \varnothing  $ is an empty set because the predicate is false for every possible element of $\cup \varnothing $. 
+        Therefore, $\cup \varnothing = \varnothing $.   
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+        
+        % 4c 
+        \item 
+        \emph{\textbf{Proof.}} What is $\cap \varnothing $? Justify your answer with a proof. \\
+        We know that $\cap \varnothing := \{z \mid \forall y (y \in \varnothing \Rightarrow z \in y) \}  $. 
+        By the definition of the empty set, we know that $\neg \exists y (y \in \varnothing) $. So, the consequent in the conditional statement is always false.
+        Because the consequent of the conditional statement is false for all $y$, the conditional statement is then true for all $y$. So, we can conclude that every element exists in $\cap \varnothing$. Therefore, $\cap \varnothing \in \cap \varnothing $. 
+        However by \emph{Russell's Paradox}, we know this to be false. Therefore, $\cap  \varnothing $ does not exist. 
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+
+        % 4d
+        \item 
+        Is $\varnothing = \{z \mid z \in \varnothing \}  $ ? Justify your anwer with a proof. \\
+        \emph{\textbf{Proof.}} Let $z$ be a set. By the definition of the empty set, we know $\neg \exists z (z \in \varnothing) $.
+        So, there are no elements of $z$ that satisfy $z \in \varnothing $. 
+        So, the set of all elements that satisfy $\{z \mid z \in \varnothing \} $ is empty because the empty set contains no elements. 
+        Thus, $\varnothing = \{z \mid z \in \varnothing \} $.
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+        
+        % 4e 
+        \item 
+        Is $\varnothing = \{z \mid z \notin \varnothing \} $? Justify your answer with a proof. \\
+        \emph{\textbf{Proof.}} Let $z$ be a set. By the definition of the empty set, we know $\neg \exists z (z \in \varnothing) $. By \emph{existential elimination}, we then know $\forall z (z \notin \varnothing) $. 
+        Because the empty set cannot contain any elements, the set of all elements that satisfy $\{z \mid z \notin \varnothing \} $ is every element. Thus, $\varnothing \neq \{z \mid z \notin \varnothing \} $ because the empty set is not equal to a set with infinite elements. 
+        \begin{flushright}
+            $\blacksquare$
+        \end{flushright}
+    \end{enumerate}
+        
+\end{enumerate}
+
+
+
+\end{document}
